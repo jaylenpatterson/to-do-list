@@ -27,3 +27,23 @@ body > nav {
   display: flex;
   justify-content: space-between;
 }
+
+.profile_display > img {
+  width: 300px;
+  height: 300px;
+}
+
+.to_do_app {
+  display: flex;
+  justify-content: space-between;
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+}
+
+.check_complete {
+  display: flex;
+  justify-content: space-between;
+}
