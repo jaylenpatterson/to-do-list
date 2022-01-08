@@ -1,7 +1,30 @@
 -- Drop and recreate Users table (Example)
-
 DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS tasks CASCADE;
+DROP TABLE IF EXISTS categories CASCADE;
+
+
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(255) NOT NULL
+  first_name VARCHAR(255) NOT NULL,
+  last_name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE tasks (
+  id SERIAL PRIMARY KEY NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  complete BOOLEAN NOT NULL DEFAULT FALSE,
+  completed_by VARCHAR(255) NOT NULL,
+  date_created TIMESTAMP NOT NULL,
+  category_id VARCHAR(255) NOT NULL,
+  urgency VARCHAR(255) NOT NULL,
+  user_id VARCHAR(255) REFERENCES users(id) ON DELETE CASCADE;
+)
+
+CREATE TABLE categories (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  description TEXT
+)
