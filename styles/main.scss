@@ -23,9 +23,22 @@
   margin-right: 200px;
 }
 
+body {
+  background-color: #303030;
+}
+
+main {
+  width: 90%;
+  margin: auto;
+  background-color: #616161;
+}
+
 body > nav {
   display: flex;
   justify-content: space-between;
+  width: 90%;
+  background-color: #616161;
+  margin: auto;
 }
 
 .profile_display > img {

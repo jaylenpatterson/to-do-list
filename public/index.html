@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <title>Home Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -11,20 +12,31 @@
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
-</head>
+  <script type="text/javascript" src="/scripts/header.js"></script>
+  <script type="text/javascript" src="/scripts/register.js"></script>
+
+  <title>Home Page</title>
+  </head>
 
 <body>
   <nav>
     <h1>Task Master!</h1>
     <div class = "nav_buttons">
-      <button>New Task</button> 
-      <button>Logout</button> 
+      <button id='register-button'>Register</button>
+      <button>Logout</button>
     </div>
   </nav>
   <br>
   <br>
-   <br>
   <br>
+  <br>
+
+  <header id="main-header" class="main-header">
+  </header>
+
+  <main>
+
+  </main>
   <!-- <div class = "login_register">
 
     <div class = "login_promt">
@@ -99,7 +111,7 @@
     <br>
     <br>
 
-    
+
     <h2>TO DO:</h2>
 
     <div class = "task">
@@ -120,7 +132,9 @@
       </div>
 
   </div> -->
-    <div class = "new_task">
+
+  <!-- New Task -->
+    <!-- <div class = "new_task">
       <h4>New Task</h4>
       <textarea></textarea>
       <label>Task</label>
@@ -141,11 +155,11 @@
       <label>Priority</label>
        <br>
       <button>Create New Task!</button>
-    </div>
+    </div> -->
 
   </div>
 
-  
+
 </body>
 
 </html>
