@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  // // Get the user data and create a header
+  // Get the user data and create a header
   // getUser()
   // .then(userObj => {
   //   console.log(userObj);
