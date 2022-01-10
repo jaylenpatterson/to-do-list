@@ -1,122 +1,132 @@
 const axios = require('axios');
-
-// keyWords for regex
-
-const watchKeyWords = [
-	'movie',
-	'animation',
-	'imbd',
-	'sitcom',
-	'film',
-	'television',
-	'tv',
-	'netflix',
-	'directed',
-	'watch',
-	'anime',
-	'rotten tomatoes',
-	'program',
-	'stream',
-	'season',
-	'Blu-ray',
-	'director',
-	'show',
-	'TV'
-];
-const readKeyWords = [
-	'novel',
-	'author',
-	'novels',
-	'Paperback',
-	'audible',
-	'read',
-	'audiobook',
-	'hardcover',
-	'written',
-	'books',
-	'poem',
-	'poems',
-	'volume',
-	'vol',
-	'vols',
-	'library'
-];
-const eatKeyWords = [
-	'meal',
-	'dinner',
-	'snacks',
-	'food',
-	'delicious',
-	'dining',
-	'resturant',
-	'cusine',
-	'diners',
-	'diner',
-	'prepares',
-	'fresh',
-	'menu',
-	'juicy',
-	'recipe',
-	'marinate'
-];
-
-const findWatchKeyWords = function(str) {
-	for (let word of watchKeyWords) {
-		if (str.search(word) != -1) {
-			return true;
-		}
-	}
-	return false;
-};
-
-const findReadKeyWords = function(str) {
-	for (let word of readKeyWords) {
-		if (str.search(word) != -1) {
-			return true;
-		}
-	}
-	return false;
-};
-
-const findEatKeyWords = function(str) {
-	for (let word of eatKeyWords) {
-		if (str.search(word) != -1) {
-			return true;
-		}
-	}
-	return false;
-};
-
-// Produces a string with information about the type of medium/entity the query is
+// makes an api call to rapid api then compares that data against 3 seperate lists of key words
+// This function then decides whether a string should be categorized as a "read", "watch", "eat" or "buy"
 const searcher = function(query) {
-	const params = {
-		//These API calls are limited to 100 be careful :)
-		api_key: '8E18BC37CDA44180A962F38036260267',
-		engine: 'google',
-		gl: 'ca',
-		lr: 'lang_en',
-		cr: 'ca',
-		q: query
+	// keyWords for regex
+	const watchKeyWords = [
+		'movie',
+		'animation',
+		'imbd',
+		'sitcom',
+		'film',
+		'television',
+		'tv',
+		'netflix',
+		'directed',
+		'watch',
+		'anime',
+		'rotten tomatoes',
+		'program',
+		'stream',
+		'season',
+		'Blu-ray',
+		'director',
+		'show',
+		'TV',
+		'animated'
+	];
+	const readKeyWords = [
+		'novel',
+		'author',
+		'novels',
+		'Paperback',
+		'audible',
+		'read',
+		'audiobook',
+		'hardcover',
+		'written',
+		'books',
+		'poem',
+		'poems',
+		'volume',
+		'vol',
+		'vols',
+		'library'
+	];
+	const eatKeyWords = [
+		'meal',
+		'dinner',
+		'snacks',
+		'food',
+		'delicious',
+		'dining',
+		'resturant',
+		'cusine',
+		'diners',
+		'diner',
+		'prepares',
+		'fresh',
+		'menu',
+		'juicy',
+		'recipe',
+		'marinate',
+		'eat'
+	];
+	// finds out if this string has any of the watch key words within its title or description.
+	const findWatchKeyWords = function(str) {
+		for (let word of watchKeyWords) {
+			if (str.toLowerCase().search(word) != -1) {
+				return true;
+			}
+		}
+		return false;
 	};
 
-	// make the http GET request to SerpWow
+	// finds out if this string has any of the read key words within its title or description.
+	const findReadKeyWords = function(str) {
+		for (let word of readKeyWords) {
+			if (str.toLowerCase().search(word) != -1) {
+				return true;
+			}
+		}
+		return false;
+	};
+	// finds out if this string has any of the eat key words within its title or description. If not the word is categorized as a product to buy
+	const findEatKeyWords = function(str) {
+		for (let word of eatKeyWords) {
+			if (str.toLowerCase().search(word) != -1) {
+				return true;
+			}
+		}
+		return false;
+	};
+	// settings for an api call to rapid api
+	let options = {
+		method: 'GET',
+		url: `https://google-search3.p.rapidapi.com/api/v1/search/q=${query}&num=5&lr=lang_en&hl=en&cr=CA`,
+		headers: {
+			'x-user-agent': 'desktop',
+			'x-proxy-location': 'CA',
+			'x-rapidapi-host': 'google-search3.p.rapidapi.com',
+			'x-rapidapi-key': '7d5cd9333cmsh890e072fca90dbfp1ddaf0jsn0efc5f6e76de'
+		}
+	};
+
 	axios
-		.get('https://api.serpwow.com/search', { params })
+		.request(options)
 		.then((response) => {
-			// console.log(JSON.stringify(response.data['organic_results'][0]['snippet']))
-			// determines if any key words can be found within the string that the searcher function retreives. If so return true otherwise return false
-			if (findWatchKeyWords(JSON.stringify(response.data['organic_results'][0]['snippet'], 0, 2))) {
-				return "watch";
+			// logic that uses helper functions to organize a string into its respective category
+			if (
+				findReadKeyWords(response.data.results[0].description) ||
+				findReadKeyWords(response.data.results[0].title)
+			) {
+				return 'read';
 			}
 
-			if (findReadKeyWords(JSON.stringify(response.data['organic_results'][0]['snippet'], 0, 2))) {
-				return "read";
+			if (
+				findWatchKeyWords(response.data.results[0].description) ||
+				findWatchKeyWords(response.data.results[0].title)
+			) {
+				return 'watch';
 			}
 
-			if (findEatKeyWords(JSON.stringify(response.data['organic_results'][0]['snippet'], 0, 2))) {
-				return "resturant";
+			if (
+				findEatKeyWords(response.data.results[0].description) ||
+				findEatKeyWords(response.data.results[0].title)
+			) {
+				return 'resturant';
 			} else {
-        return "buy";
+				return 'buy';
 			}
 		})
 		.catch((error) => {
@@ -124,25 +134,4 @@ const searcher = function(query) {
 			console.log(error);
 		});
 };
-
-// searcher('harry potter');
-
-// module.exports(searcher);
-
-
-// let re = new RegExp(//, 'i')
-
-// const findWatchKeyWords = function(str) {
-//   for(let word of watchKeyWords) {
-//     if (str.search(word) != -1) {
-//       return true;
-//     }
-//   }
-//   return false;
-// }
-// findWatchKeyWords("family guy")
-
-// knowledge_graph.description (for resturants)
-// knowledge_graph.type (for movies and books)
-// response.data.knowledge_graph["known_attributes"][0].attribute
-//snippet
+module.exports = searcher;
