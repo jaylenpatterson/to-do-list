@@ -1,62 +1,54 @@
-// body {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   min-height: 100vh;
+// Constant Colors
+$primary-color: #FFFFFF;
 
-//   background: rgb(163, 208, 219);
-//   background: linear-gradient(
-//     227deg,
-//     rgba(163, 208, 219, 1) 0%,
-//     rgba(163, 176, 219, 1) 20%,
-//     rgba(163, 173, 219, 1) 34%,
-//     rgba(163, 219, 208, 1) 59%,
-//     rgba(163, 208, 219, 1) 74%,
-//     rgba(163, 208, 219, 1) 100%
-//   );
-// }
-
-.login_register {
-  display: flex;
-  justify-content:center;
-  margin-left: 200px;
-  margin-right: 200px;
-}
 
 body {
-  background-color: #303030;
+  min-height: 100vh;
+
+  background: #355C7D;  /* for old browsers */
+  background: -webkit-linear-gradient(to top, #C06C84, #6C5B7B, #355C7D);
+  background: linear-gradient(to top, #C06C84, #6C5B7B, #355C7D);
 }
 
 main {
   width: 90%;
   margin: auto;
-  background-color: #616161;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-body > nav {
-  display: flex;
-  justify-content: space-between;
+.tasks {
   width: 90%;
-  background-color: #616161;
-  margin: auto;
+  padding-top: 150px;
 }
 
-.profile_display > img {
-  width: 300px;
-  height: 300px;
-}
-
-.to_do_app {
+article.listed-tasks header {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  align-items: center
 }
 
-.task {
-  display: flex;
-  justify-content: space-between;
+article.listed-tasks h4 {
+  margin-left: 10px;
+  margin-bottom: 0px;
 }
 
-.check_complete {
-  display: flex;
-  justify-content: space-between;
+article.listed-tasks span.icons {
+  padding-top: 10px;
+  margin-left: auto;
+}
+
+article.inner-content {
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+article.listed-tasks {
+  border-radius: 25px;
+  background: #9392C3;
+  padding: 10px;
+  width: 100%;
+  height: 150px;
+  margin-bottom: 50px;
 }
