@@ -1,0 +1,22 @@
+@use 'main';
+
+nav {
+  color: main.$primary-color;
+  height: 7em;
+  padding: 1.5em;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: fixed;
+}
+
+.theProfile {
+  color: main.$primary-color;
+  height: 200px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-color: #9392C3;
+}
