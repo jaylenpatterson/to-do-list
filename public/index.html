@@ -14,6 +14,7 @@
   <script type="text/javascript" src="/scripts/app.js"></script>
   <script type="text/javascript" src="/scripts/header.js"></script>
   <script type="text/javascript" src="/scripts/register.js"></script>
+  <script type="text/javascript" src="/scripts/new_task.js"></script>
 
   <title>Home Page</title>
   </head>
@@ -134,28 +135,30 @@
   </div> -->
 
   <!-- New Task -->
-    <!-- <div class = "new_task">
-      <h4>New Task</h4>
-      <textarea></textarea>
-      <label>Task</label>
-      <br>
-      <textarea></textarea>
-      <label>Description</label>
-       <br>
-      <textarea></textarea>
-      <label>Start Date</label>
-       <br>
-      <textarea></textarea>
-      <label>End Date</label>
-       <br>
-      <textarea></textarea>
-      <label>Category</label>
-       <br>
-      <textarea></textarea>
-      <label>Priority</label>
-       <br>
-      <button>Create New Task!</button>
-    </div> -->
+     <div class = "new_task">
+     <h4>New Task</h4>
+      <form id = "new_task_form">
+        <textarea name = "task", id = "task_title"></textarea>
+        <label>Task</label>
+        <br>
+        <textarea name = "description", id = "task_description"></textarea>
+        <label>Description</label>
+        <br>
+        <textarea></textarea>
+        <label>Start Date</label>
+        <br>
+        <textarea></textarea>
+        <label>End Date</label>
+        <br>
+        <textarea></textarea>
+        <label>Category</label>
+        <br>
+        <textarea></textarea>
+        <label>Priority</label>
+        <br>
+        <button type="submit" form="new_task_form">Create New Task!</button>
+      </form>
+    </div> 
 
   </div>
 
