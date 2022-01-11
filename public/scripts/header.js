@@ -1,17 +1,26 @@
 $(document).ready(function() {
   // Get the user data and create a header
-  // getUser()
-  // .then(userObj => {
-  //   console.log(userObj);
-  //   createNewHeaderDiv(userObj);
-  // });
+  getTheUser()
+  .then(userObj => {
+    console.log(userObj);
+    createNewNavDiv(userObj);
+  });
 
-  $main = $('main');
+});
+  // Create nav based on user
+  const createNewNavDiv = (user) => {
+    const $nav = $('#nav');
 
-  $(document).on('click', '#register-button', function(event) {
-    event.preventDefault();
-    animateHeaderButtons($registerForm)
-  })
+    $nav.empty();
+    if (Object.keys(user).length > 0) {
+      const $navBar = $(`
+      <h1>Welcome back, ${user.name}</h1>
+      <h1>Task Master!</h1>
+      `);
+      $('nav').append($navBar);
+    }
+  };
+
 
   // Animation
   const animateHeaderButtons = function(form) {
@@ -21,6 +30,17 @@ $(document).ready(function() {
     $main.append(form);
     })
   }
+
+  // Get user data
+  const getTheUser = function() {
+    return $.ajax({
+      url: '/users/',
+    })
+    .then(userObj => {
+      return userObj;
+    });
+  }
+
 
   // HTML for form variables
 $registerForm = `
@@ -44,4 +64,3 @@ $registerForm = `
 </div>
 </form>
 `
-})
