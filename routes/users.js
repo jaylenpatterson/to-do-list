@@ -11,17 +11,21 @@ const bcrypt = require('bcrypt');
 const { addUser } = require('./helperFunctions');
 
 module.exports = (db) => {
+  // Get current users
   router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
+    const userID = '1';
+    if (userID) {
+      db.query(`SELECT * FROM users WHERE id = $1;`, [userID])
       .then(data => {
-        const users = data.rows;
-        res.json({ users });
+        const users = data.rows[0];
+        res.send({id: users.id, name: users.name, email: users.email});
       })
       .catch(err => {
         res
           .status(500)
           .json({ error: err.message });
       });
+    }
   });
 
   // Registration Users
