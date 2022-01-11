@@ -15,13 +15,13 @@ CREATE TABLE users (
 CREATE TABLE tasks (
   id SERIAL PRIMARY KEY NOT NULL,
   title VARCHAR(255) NOT NULL,
-  complete BOOLEAN NOT NULL DEFAULT FALSE,
-  completed_by VARCHAR(255) NOT NULL,
-  date_created TIMESTAMP NOT NULL,
-  category_id VARCHAR(255) NOT NULL,
-  urgency VARCHAR(255) NOT NULL,
-  user_id VARCHAR(255) REFERENCES users(id) ON DELETE CASCADE;
-)
+  start_date DATE,
+  end_date DATE,
+  category_id SMALLINT,
+  user_id INTEGER,
+  urgency SMALLINT,
+  complete BOOLEAN NOT NULL DEFAULT FALSE
+);
 
 CREATE TABLE categories (
   id SERIAL PRIMARY KEY NOT NULL,
