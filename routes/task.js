@@ -11,6 +11,7 @@ const searcher = require('../helpers/categorize.js');
 const { getUsersTasks, addNewTask } = require('./helperFunctions');
 
 module.exports = (db) => {
+  // Getting user ID
   router.get('/', (req, res) => {
     const userID = '1';
     if (!userID) {
@@ -24,49 +25,17 @@ module.exports = (db) => {
       });
   });
 
-
-	router.post('/', (req, res) => {
-    const userID = '1';
-		const values = [ req.body.task, req.body.start_date, userID, req.body.priority ];
-
-		const addNewTask = function(values, db) {
-			const text = `INSERT INTO tasks (title, start_date, user_id, urgency, category)
-        VALUES ($1, $2, $3, $4, $5)
-        RETURNING *;
-        `;
-
-			return db.query(text, values).catch((err) => {
-				console.log(err.message);
-			});
-		};
-
-		searcher(req.body.task)
-			.then((result) => {
-				if (result === 'read') {
-					category = 1;
-					values.push(category);
-				}
-				if (result === 'watch') {
-					category = 2;
-					values.push(category);
-				}
-				if (result === 'eat') {
-					category = 3;
-					values.push(category);
-				}
-				if (result === 'buy') {
-					category = 4;
-					values.push(category);
-				}
-				return addNewTask(values, db);
-			})
-			.catch(console.error);
-
-		if (!req.body) {
-			res.status(400).json({ error: 'invalid request: no data in POST body' });
-			return;
-		}
-	});
+  // Adding new task
+  router.post('/', (req, res) => {
+     const userID = '1';
+     const description = req.body.text_description;
+     searcher(req.body.text_description)
+     .then(res => addNewTask(userID, description, res, db))
+     .then(task => res.send(task))
+     .catch(err => {
+       res.send(err);
+     })
+    })
 
 	return router;
 
