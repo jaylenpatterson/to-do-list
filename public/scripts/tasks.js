@@ -39,7 +39,7 @@ const taskListBuilder = (task) => {
 // Function that grabs the tasks from the database and renders them
 const renderTasks = () => {
   clearTasks();
-  $.get('/tasks')
+  $.get('/task')
     .then(data => {
       for (const taskID in data) {
         const task = data[taskID];
