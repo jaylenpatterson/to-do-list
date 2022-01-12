@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 
 // Insert new registered user into the database
 const addUser = (user, db) => {
-  const queryString = `
+	const queryString = `
   INSERT INTO users (name, email, password)
   VALUES ($1, $2, $3)
   RETURNING *;
@@ -13,52 +13,36 @@ const addUser = (user, db) => {
 };
 
 // Get tasks that based on user
-const getUsersTasks = function(userid, db) {
-  const queryString = `
+const getUsersTasks = function(userid, db, filter) {
+	const queryString = `
     SELECT *
     FROM tasks
     WHERE tasks.user_id = $1
+    ${filter ? 'AND category = $2' : ''}
     ORDER BY tasks.start_date ASC;`;
-  const value = [userid];
-  return db.query(queryString, value)
-    .then(res => res.rows)
-    .catch(err => {
-      console.error('query error', err.stack);
-    });
+	const value = [ userid ];
+	if (filter) {
+		value.push(filter);
+	}
+	return db.query(queryString, value).then((res) => res.rows).catch((err) => {
+		console.error('query error', err.stack);
+	});
 };
 
-const getUsersTasksSorted = function(userid, db) {
-  const queryString = `
-    SELECT *
-    FROM tasks
-    WHERE tasks.user_id = $1
-    ORDER BY tasks.start_date ASC;`;
-  const value = [userid];
-  return db.query(queryString, value)
-    .then(res => res.rows)
-    .catch(err => {
-      console.error('query error', err.stack);
-    });
-}
-
 const addNewTask = function(userid, db) {
-  const text = `INSERT INTO tasks (user_id, title, start_date, urgency, category)
+	const text = `INSERT INTO tasks (user_id, title, start_date, urgency, category)
   VALUES ($1, $2, $3, $4, $5)
   RETURNING *;
   `;
 
-  const value = [userid, title, start_date, category, urgency];
-	return db.query(text, value)
-  .then(res => res.rows)
-  .catch((err) => {
-			console.log(err.message);
-		});
+	const value = [ userid, title, start_date, category, urgency ];
+	return db.query(text, value).then((res) => res.rows).catch((err) => {
+		console.log(err.message);
+	});
 };
-
-
 
 module.exports = {
 	addUser,
 	addNewTask,
-  getUsersTasks
+	getUsersTasks
 };

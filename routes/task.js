@@ -12,12 +12,13 @@ const { getUsersTasks, addNewTask } = require('./helperFunctions');
 
 module.exports = (db) => {
   router.get('/', (req, res) => {
+		const filter = req.query.filter
     const userID = '1';
     if (!userID) {
       res.status(401).send('Not Logged in');
       return;
     }
-    getUsersTasks(userID, db)
+    getUsersTasks(userID, db, filter)
       .then(tasks => res.send(tasks))
       .catch(err => {
         res.send(err);
