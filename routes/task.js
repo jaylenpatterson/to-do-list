@@ -8,17 +8,30 @@
 const express = require('express');
 const router = express.Router();
 const searcher = require('../helpers/categorize.js');
-const { getUsersTasks } = require('./helperFunctions');
+const { getUsersTasks, addNewTask } = require('./helperFunctions');
 
 module.exports = (db) => {
-	router.get('/', (req, res) => {});
+  router.get('/', (req, res) => {
+    const userID = '1';
+    if (!userID) {
+      res.status(401).send('Not Logged in');
+      return;
+    }
+    getUsersTasks(userID, db)
+      .then(tasks => res.send(tasks))
+      .catch(err => {
+        res.send(err);
+      });
+  });
+
 
 	router.post('/', (req, res) => {
-		const values = [ req.body.task, req.body.start_date, req.body.priority ];
+    const userID = '1';
+		const values = [ req.body.task, req.body.start_date, userID, req.body.priority ];
 
 		const addNewTask = function(values, db) {
-			const text = `INSERT INTO tasks (title, start_date, urgency, category)
-        VALUES ($1, $2, $3, $4)
+			const text = `INSERT INTO tasks (title, start_date, user_id, urgency, category)
+        VALUES ($1, $2, $3, $4, $5)
         RETURNING *;
         `;
 
@@ -57,24 +70,5 @@ module.exports = (db) => {
 	});
 
 	return router;
-};
 
-
-
-
-module.exports = (db) => {
-  router.get('/', (req, res) => {
-    const userID = '1';
-    if (!userID) {
-      res.status(401).send('Not Logged in');
-      return;
-    }
-    getUsersTasks(userID, db)
-      .then(tasks => res.send(tasks))
-      .catch(err => {
-        res.send(err);
-      });
-  });
-
-  return router;
 };
