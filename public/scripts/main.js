@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(function() {
   $main = $("main");
   getTheUser()
     .then(userData => {
@@ -14,8 +14,3 @@ const appendMain = function(user) {
     renderTasks();
   }
 };
-
-
-
-// HTML content to be dynamically added
-

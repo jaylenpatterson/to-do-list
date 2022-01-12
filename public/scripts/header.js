@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(function() {
   // Get the user data and create a header
   getTheUser()
   .then(userObj => {
