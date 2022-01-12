@@ -26,7 +26,17 @@ const createTaskElement = (taskObj) => {
 
 // Function to assist to clear the container before rendering
 const clearTasks = () => {
-  $('main').empty();
+  $(".watch.taskContainer").empty();
+  $(".eat.taskContainer").empty();
+  $(".read.taskContainer").empty();
+  $(".buy.taskContainer").empty();
+  $(".null.taskContainer").empty();
+
+  $('.h2.watch').hide();
+  $('.h2.eat').hide();
+  $('.h2.read').hide();
+  $('.h2.buy').hide();
+  $('.h2.null').hide();
 };
 
 

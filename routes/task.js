@@ -58,7 +58,6 @@ module.exports = (db) => {
 					category = 4;
 					values.push(category);
 				}
-
 				return addNewTask(values, db);
 			})
 			.catch(console.error);
