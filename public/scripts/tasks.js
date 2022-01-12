@@ -1,11 +1,10 @@
-$(document).ready(function() {
+$(function() {
 
 });
 
 // Creates an HTML task element
 const createTaskElement = (taskObj) => {
   let $newTask = null;
-
 
     $newTask = `
     <article class="listed-tasks">
@@ -18,22 +17,18 @@ const createTaskElement = (taskObj) => {
       </span>
     </header>
     <article class="inner-content">
-      <p>${taskObj.completed_by}</p>
+      <p>${taskObj.start_date}</p>
     </article>
     </article>
     `;
   return $newTask;
 };
 
-// Function assist to clear the container before rendering
-const clearTasks = () => {
-  $('main').empty();
-};
 
 // Function to create a list of task for rendering
 const taskListBuilder = (task) => {
   const newTask = createTaskElement(task);
-    $('main').append(newTask);
+    $('main').prepend(newTask);
 };
 
 // Function that grabs the tasks from the database and renders them
