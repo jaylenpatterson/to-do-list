@@ -24,6 +24,11 @@ const createTaskElement = (taskObj) => {
   return $newTask;
 };
 
+// Function to assist to clear the container before rendering
+const clearTasks = () => {
+  $('main').empty();
+};
+
 
 // Function to create a list of task for rendering
 const taskListBuilder = (task) => {
