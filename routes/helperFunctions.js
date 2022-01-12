@@ -27,6 +27,20 @@ const getUsersTasks = function(userid, db) {
     });
 };
 
+const getUsersTasksSorted = function(userid, db) {
+  const queryString = `
+    SELECT *
+    FROM tasks
+    WHERE tasks.user_id = $1
+    ORDER BY tasks.start_date ASC;`;
+  const value = [userid];
+  return db.query(queryString, value)
+    .then(res => res.rows)
+    .catch(err => {
+      console.error('query error', err.stack);
+    });
+}
+
 const addNewTask = function(userid, db) {
   const text = `INSERT INTO tasks (user_id, title, start_date, urgency, category)
   VALUES ($1, $2, $3, $4, $5)
