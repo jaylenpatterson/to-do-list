@@ -7,6 +7,7 @@ $(document).ready(function() {
   });
 
 });
+
   // Create nav based on user
   const createNewNavDiv = (user) => {
     const $nav = $('#nav');
