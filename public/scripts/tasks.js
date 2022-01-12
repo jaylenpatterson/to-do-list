@@ -30,7 +30,7 @@ const createTaskElement = (taskObj) => {
 
 // Function to assist to clear the container before rendering
 const clearTasks = () => {
-
+  $('.listed-tasks').remove();
 };
 
 
@@ -76,11 +76,12 @@ const submitTask = () => {
     const error = input.find('#error');
     const errorIcon = `<i class="fas fa-exclamation-triangle"></i>`;
     error.html("");
-    // client-side error checking prior to posting the value
+    // Checking if textValue is empty or null
     if (textValue === "" || textValue === null) {
       error.append(`${errorIcon}  Error: task description cannot be empty`);
     } else {
       const modal = $('#new-task-popup');
+      // Posting new task and rendering
       $.post('/task', serializedText)
         .then(() => {
           $('#new-task-popup').fadeOut(500);

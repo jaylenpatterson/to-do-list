@@ -14,11 +14,16 @@ const appendMain = function(user) {
     $('main').prepend($newTaskModal);
     $('main').append($buttonGroup);
     $('main').append($newTask);
+    $('main').append($taskContainer);
     renderTasks();
   }
 };
 
 // HTML content to be dynamically added
+const $taskContainer = `
+<section id="task-container">
+`
+
 const $newTask = `<button id="new-task">Add a new task</button>`;
 
 const $buttonGroup = `
