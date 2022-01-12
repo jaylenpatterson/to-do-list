@@ -62,6 +62,7 @@ const submitTask = () => {
     if (clickDisabled) {
       return;
     }
+    // Prevent submit spam
     clickDisabled = true;
     setTimeout(function() {
       clickDisabled = false;
@@ -76,6 +77,7 @@ const submitTask = () => {
     const error = input.find('#error');
     const errorIcon = `<i class="fas fa-exclamation-triangle"></i>`;
     error.html("");
+
     // Checking if textValue is empty or null
     if (textValue === "" || textValue === null) {
       error.append(`${errorIcon}  Error: task description cannot be empty`);
