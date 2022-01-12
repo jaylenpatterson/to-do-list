@@ -102,36 +102,28 @@ const searcher = function(query) {
 		}
 	};
 
-	axios
-		.request(options)
-		.then((response) => {
-			// logic that uses helper functions to organize a string into its respective category
-			if (
-				findReadKeyWords(response.data.results[0].description) ||
-				findReadKeyWords(response.data.results[0].title)
-			) {
-				return 'read';
-			}
+	return axios.request(options).then((response) => {
+		// logic that uses helper functions to organize a string into its respective category
+		if (
+			findReadKeyWords(response.data.results[0].description) ||
+			findReadKeyWords(response.data.results[0].title)
+		) {
+			return new Promise((resolve) => resolve('read'));
+		}
 
-			if (
-				findWatchKeyWords(response.data.results[0].description) ||
-				findWatchKeyWords(response.data.results[0].title)
-			) {
-				return 'watch';
-			}
+		if (
+			findWatchKeyWords(response.data.results[0].description) ||
+			findWatchKeyWords(response.data.results[0].title)
+		) {
+		return	new Promise((resolve) => resolve('watch'));
+		}
 
-			if (
-				findEatKeyWords(response.data.results[0].description) ||
-				findEatKeyWords(response.data.results[0].title)
-			) {
-				return 'resturant';
-			} else {
-				return 'buy';
-			}
-		})
-		.catch((error) => {
-			// catch and print the error
-			console.log(error);
-		});
+		if (findEatKeyWords(response.data.results[0].description) || findEatKeyWords(response.data.results[0].title)) {
+		return	new Promise((resolve) => resolve('eat'));
+		} else {
+		return	new Promise((resolve) => resolve('buy'));
+		}
+	});
 };
+
 module.exports = searcher;
