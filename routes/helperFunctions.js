@@ -27,21 +27,23 @@ const getUsersTasks = function(userid, db) {
     });
 };
 
-const addNewTask = function(userid, db) {
-  const text = `INSERT INTO tasks (user_id, title, start_date, urgency, category)
-  VALUES ($1, $2, $3, $4, $5)
-  RETURNING *;
-  `;
+// Add Task to DB
+const addNewTask = function(userid, description, category, db) {
+  const userID = '1';
+  const date = new Date();
 
-  const value = [userid, title, start_date, category, urgency];
-	return db.query(text, value)
+  const queryString = `INSERT INTO tasks (user_id, description, start_date, category)
+  VALUES ($1, $2, $3, $4)
+  RETURNING *;`;
+
+  const value = [userid, description, date, category];
+  console.log(value);
+  return db.query(queryString, value)
   .then(res => res.rows)
-  .catch((err) => {
-			console.log(err.message);
-		});
+  .catch(err => {
+    console.log('Query Error:', err);
+  });
 };
-
-
 
 module.exports = {
 	addUser,
