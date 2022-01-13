@@ -40,7 +40,11 @@ module.exports = (db) => {
 
 	router.post('/delete', (req, res) => {
 		const id = req.body.id
-		deleteTask(id)
+		deleteTask(id, db)
+		 .then(tasks => res.send(tasks))
+      .catch(err => {
+        res.send(err);
+      });
 	})
 
 	return router;

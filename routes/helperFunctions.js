@@ -43,7 +43,8 @@ const addNewTask = function(userid, db) {
 
 const deleteTask = function(id, db) {
 	const text = `DELETE FROM tasks 
-    WHERE id = ${'$1'};
+    WHERE id = ${'$1'}
+    RETURNING *;
   `;
 
 	const value = [ id ];
