@@ -22,8 +22,28 @@ const appendMain = function(user) {
 // HTML content to be dynamically added
 const $taskContainer = `
 <section id="task-container">
-`
-
+<div class="category-watch">
+<h2 class='h2 toWatch'>To//Watch</h2>
+<div class='toWatch taskContainer'></div>
+</div>
+<div class="category-eat">
+<h2 class='h2 toEat'>To Eat:</h2>
+<div class='toEat taskContainer'></div>
+</div>
+<div class="category-read">
+<h2 class='h2 toRead'>To Read:</h2>
+<div class='toRead taskContainer'></div>
+</div>
+<div class="category-buy">
+<h2 class='h2 toBuy'>To Buy:</h2>
+<div class='toBuy taskContainer'></div>
+</div>
+<div class="category-null">
+<h2 class='h2 null'>Uncategorized:</h2>
+<div class='null taskContainer'></div>
+</div>
+</section>
+`;
 const $newTask = `<button id="new-task">Add a new task</button>`;
 
 const $buttonGroup = `
