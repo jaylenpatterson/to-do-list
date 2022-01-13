@@ -3,19 +3,27 @@ $(function() {
 
 	$('body').on('click', '.all-category-btn', () => {
 		renderTasks();
+    $('.h2.allTasks').show();
 	});
 	$('body').on('click', '.read-category-btn', () => {
 		renderTasks('read');
+    $('.h2.allTasks').hide();
+    $('.h2.toRead').show();
 	});
 	$('body').on('click', '.watch-category-btn', () => {
 		renderTasks('watch');
+    $('.h2.allTasks').hide();
     $('.h2.toWatch').show();
 	});
 	$('body').on('click', '.eat-category-btn', () => {
 		renderTasks('eat');
+    $('.h2.allTasks').hide();
+    $('.h2.toEat').show();
 	});
 	$('body').on('click', '.buy-category-btn', () => {
 		renderTasks('buy');
+    $('.h2.allTasks').hide();
+    $('.h2.toBuy').show();
 	});
 
 	submitTask();
