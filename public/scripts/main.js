@@ -64,6 +64,7 @@ const $newTaskModal = `
 <div id="new-task-popup" class="modal">
   <!-- Modal content -->
   <div class="modal-content">
+  <span class="close newTask">&times;</span>
     <form id="new-task-form">
       <div>
         <textarea name="text_description" id="task-description" placeholder="Enter task description"></textarea>
@@ -79,6 +80,7 @@ const $editTaskModal = `
 <div id="edit-task-popup" class="modal">
   <!-- Modal content -->
   <div class="modal-content">
+  <span class="close editTask">&times;</span>
     <form id="edit-task-form">
       <div>
         <label id="category-modal" for="category">Category:</label>
