@@ -1,0 +1,44 @@
+// Category Button CSS
+@use 'main';
+
+// Button Group
+.button-group {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 20px;
+}
+
+// Each button
+  .button-group button {
+    background: none;
+    border: none;
+    color: #FFF;
+    cursor: pointer;
+  }
+
+// Button hover
+    .button-group button:hover {
+      color: main.$buttonHoverColor;
+      animation: pulse 2s infinite;
+
+      @keyframes pulse {
+        from { transform: scale(1); }
+        50% { transform: scale(0.85); }
+        to { transform: scale(1); }
+      }
+
+    }
+
+
+.icons > button {
+  border: none;
+	background: none;
+	outline: none;
+  cursor: pointer;
+}
+
+.icons > button:hover {
+  color: main.$buttonHoverColor;
+}
