@@ -76,13 +76,11 @@ const clearTasks = () => {
 	$('.toEat.taskContainer').empty();
 	$('.toRead.taskContainer').empty();
 	$('.toBuy.taskContainer').empty();
-	$('.null.taskContainer').empty();
 
 	$('.h2.toWatch').hide();
 	$('.h2.toEat').hide();
 	$('.h2.toRead').hide();
 	$('.h2.toBuy').hide();
-	$('.h2.null').hide();
 	$('.listed-tasks').remove();
 };
 

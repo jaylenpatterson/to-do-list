@@ -14,7 +14,7 @@ const appendMain = function(user) {
     $('main').prepend($newTaskModal);
     $('main').append($editTaskModal);
     $('main').append($buttonGroup);
-    $('main').append($newTask);
+    // $('main').append($newTask);
     $('main').append($taskContainer);
     renderTasks();
   }
@@ -40,23 +40,19 @@ const $taskContainer = `
 <h2 class='h2 toBuy'>To//Buy</h2>
 <div class='toBuy taskContainer'></div>
 </div>
-<div class="category-null">
-<h2 class='h2 null'>Uncategorized:</h2>
-<div class='null taskContainer'></div>
-</div>
 </section>
 `;
-const $newTask = `<button id="new-task">New Task</button>`;
+
+// const $newTask = `<button id="new-task"></button>`;
 
 const $buttonGroup = `
 <div class="button-group">
-  <button class='all-category-btn'>All</button>
-  <button class='null-category-btn'>Other</button>
-  <button class='watch-category-btn'><i class="fas fa-tv"></i></button>
-  <button class='eat-category-btn'><i class="fas fa-utensils"></i></button>
-  <button class='read-category-btn'><i class="fas fa-book"></i></button>
-  <button class='buy-category-btn'><i class="fas fa-shopping-cart"></i></button>
-  <button class='completed-category-btn'><i class="fas fa-check-square"></i></button>
+  <button id="new-task"><i class="fas fa-plus-square fa-3x"></i></button>
+  <button class='all-category-btn'><i class="fas fa-list fa-3x"></i></button>
+  <button class='watch-category-btn'><i class="fas fa-tv fa-3x"></i></button>
+  <button class='eat-category-btn'><i class="fas fa-utensils fa-3x"></i></button>
+  <button class='read-category-btn'><i class="fas fa-book fa-3x"></i></button>
+  <button class='buy-category-btn'><i class="fas fa-shopping-cart fa-3x"></i></button>
 </div>
 `;
 
