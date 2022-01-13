@@ -1,5 +1,6 @@
-
 $(function() {
+  let clickDisabled = false;
+
 	$('body').on('click', '.all-category-btn', () => {
 		renderTasks();
 	});
@@ -8,6 +9,7 @@ $(function() {
 	});
 	$('body').on('click', '.watch-category-btn', () => {
 		renderTasks('watch');
+    $('.h2.toWatch').show();
 	});
 	$('body').on('click', '.eat-category-btn', () => {
 		renderTasks('eat');
@@ -15,7 +17,6 @@ $(function() {
 	$('body').on('click', '.buy-category-btn', () => {
 		renderTasks('buy');
 	});
-	let clickDisabled = false;
 
 	submitTask();
 });
@@ -29,9 +30,8 @@ const createTaskElement = (taskObj) => {
     <header>
       <h4>${taskObj.description}</h4>
       <span class="icons">
-        <button class = "info-btn" type="button" id="${taskObj.id}"><i class="fa-solid fa-info fa-fw"></i><button>
-        <button class = "edit-btn" type="button" id="${taskObj.id}"><i class="fa-solid fa-pen-to-square fa-fw"></i></button>
-        <button class = "delete-btn" type = "button" name = "delete" id="${taskObj.id}"><i class="fa-solid fa-trash-can fa-fw"></i></button>
+        <button class= "edit-task" type="button" id="${taskObj.id}"><i class="fa-solid fa-pen-to-square fa-fw"></i></button>
+        <button class= "delete-btn" type = "button" name = "delete" id="${taskObj.id}"><i class="fa-solid fa-trash-can fa-fw"></i></button>
 
       </span>
     </header>
@@ -48,33 +48,54 @@ const createTaskElement = (taskObj) => {
 				method: 'POST',
 				url: '/task/delete',
 				data: {
-          id: event.currentTarget.id
+        id: event.currentTarget.id
         }
 			}).then(() => {
 				renderTasks();
 			});
 		})
-		.on('click', '.edit-btn', () => {
+    // On click on edit, prevent default and run function edit task
+		.on('click', '.edit-task', (event) => {
+        $(document).on('submit', '#edit-task-form', () => {
+          event.preventDefault();
 
-    })
-		.on('click', '.info-btn', () => {
+          const taskID = event.currentTarget.id;
+          const textObj = $('#edit-task-description');
+          const serializeValue = $('#edit-task-form').serialize();
+          console.log(serializeValue);
+          console.log(taskID);
 
+          // Ajax post to task db
+          $.ajax({
+            type: 'POST',
+            url: `/task/${taskID}`,
+            data: serializeValue
+          })
+            .then(() => {
+              $('#edit-task-popup').fadeOut(500);
+              setTimeout(() => {
+                $('#edit-task-popup').toggleClass('show');
+              }, 500);
+              textObj.val("");
+              renderTasks();
+            });
+        });
     });
 	return $task;
 };
 
 // Function to assist to clear the container before rendering
 const clearTasks = () => {
-	$('.watch.taskContainer').empty();
-	$('.eat.taskContainer').empty();
-	$('.read.taskContainer').empty();
-	$('.buy.taskContainer').empty();
+	$('.toWatch.taskContainer').empty();
+	$('.toEat.taskContainer').empty();
+	$('.toRead.taskContainer').empty();
+	$('.toBuy.taskContainer').empty();
 	$('.null.taskContainer').empty();
 
-	$('.h2.watch').hide();
-	$('.h2.eat').hide();
-	$('.h2.read').hide();
-	$('.h2.buy').hide();
+	$('.h2.toWatch').hide();
+	$('.h2.toEat').hide();
+	$('.h2.toRead').hide();
+	$('.h2.toBuy').hide();
 	$('.h2.null').hide();
 	$('.listed-tasks').remove();
 };
@@ -126,6 +147,7 @@ const submitTask = () => {
 			error.append(`${errorIcon}  Error: task description cannot be empty`);
 		} else {
 			const modal = $('#new-task-popup');
+
 			// Posting new task and rendering
 			$.post('/task', serializedText).then(() => {
 				$('#new-task-popup').fadeOut(500);
