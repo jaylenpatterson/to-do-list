@@ -41,8 +41,20 @@ const addNewTask = function(userid, db) {
 	});
 };
 
+const deleteTask = function(id, db) {
+	const text = `DELETE FROM tasks 
+    WHERE id = ${'$1'};
+  `;
+
+	const value = [ id ];
+	return db.query(text, value).then((res) => res.rows).catch((err) => {
+		console.log(err.message);
+	});
+};
+
 module.exports = {
 	addUser,
 	addNewTask,
-	getUsersTasks
+	getUsersTasks,
+	deleteTask
 };

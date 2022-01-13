@@ -8,7 +8,7 @@
 const express = require('express');
 const router = express.Router();
 const searcher = require('../helpers/categorize.js');
-const { getUsersTasks, addNewTask } = require('./helperFunctions');
+const { getUsersTasks, addNewTask, deleteTask  } = require('./helperFunctions');
 
 module.exports = (db) => {
   router.get('/', (req, res) => {
@@ -43,22 +43,7 @@ module.exports = (db) => {
 
 		searcher(req.body.task)
 			.then((result) => {
-				if (result === 'read') {
-					category = 1;
-					values.push(category);
-				}
-				if (result === 'watch') {
-					category = 2;
-					values.push(category);
-				}
-				if (result === 'eat') {
-					category = 3;
-					values.push(category);
-				}
-				if (result === 'buy') {
-					category = 4;
-					values.push(category);
-				}
+				values.push(result)
 				return addNewTask(values, db);
 			})
 			.catch(console.error);
@@ -68,6 +53,11 @@ module.exports = (db) => {
 			return;
 		}
 	});
+
+	router.post('/delete', (req, res) => {
+		const id = req.body.id
+		deleteTask(id)
+	})
 
 	return router;
 

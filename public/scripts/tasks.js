@@ -1,22 +1,29 @@
 $(function() {
-  $('body').on('click', '.all-category-btn', () => {
-    renderTasks();
-  });
+	$('body').on('click', '.all-category-btn', () => {
+		renderTasks();
+	});
 	$('body').on('click', '.read-category-btn', () => {
-		renderTasks(1);
+		renderTasks('read');
 	});
 	$('body').on('click', '.watch-category-btn', () => {
-		renderTasks(2);
+		renderTasks('watch');
 	});
 	$('body').on('click', '.eat-category-btn', () => {
-		renderTasks(3);
+		renderTasks('eat');
 	});
 	$('body').on('click', '.buy-category-btn', () => {
-		renderTasks(4);
+		renderTasks('buy');
 	});
-  $('body').on('click', '.fa-solid fa-trash-can fa-fw', () => {
-		renderTasks(1);
+	$('body').on('click', '.delete-btn', () => {
+		$.ajax({
+			url: '/delete/' + taskObj.id,
+			type: 'post'
+		}).done(function() {
+			renderTasks()
+		});
 	});
+	$('body').on('click', '.edit-btn', () => {});
+	$('body').on('click', '.info-btn', () => {});
 });
 
 // Creates an HTML task element
@@ -24,13 +31,15 @@ const createTaskElement = (taskObj) => {
 	let $newTask = null;
 
 	$newTask = `
-    <article class="listed-tasks">
+    <article class="listed-tasks id=${taskObj}">
     <header>
       <h4>${taskObj.title}</h4>
       <span class="icons">
-        <i class="fa-solid fa-info fa-fw"></i>
-        <i class="fa-solid fa-pen-to-square fa-fw"></i>
-        <span><i class="fa-solid fa-trash-can fa-fw"></i><span>
+        <button class = "info-btn" type="button"><i class="fa-solid fa-info fa-fw"></i><button>
+        <button class = "edit-btn" type="button"><i class="fa-solid fa-pen-to-square fa-fw"></i></button>
+        <form method = "post">
+        <button class = "delete-btn" type = "button" name = "delete"><i class="fa-solid fa-trash-can fa-fw"></i></button>
+        </form>
       </span>
     </header>
     <article class="inner-content">
