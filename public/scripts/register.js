@@ -14,7 +14,6 @@ const register = function(data) {
     data: data
   })
   .then(data => {
-    console.log(data);
     createNewHeaderDiv(data);
     appendMain(data);
   });

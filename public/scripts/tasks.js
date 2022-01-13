@@ -14,12 +14,14 @@ $(function() {
 	$('body').on('click', '.buy-category-btn', () => {
 		renderTasks('buy');
 	});
+  //incomplete
 	$('body').on('click', '.delete-btn', () => {
 		$.ajax({
-			url: '/delete/' + taskObj.id,
-			type: 'post'
-		}).done(function() {
-			renderTasks()
+			method: 'POST',
+			url: '/delete',
+			data: data
+		}).then(() => {
+			renderTasks();
 		});
 	});
 	$('body').on('click', '.edit-btn', () => {});
