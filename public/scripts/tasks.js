@@ -19,6 +19,7 @@ $(function() {
 	});
 
 	submitTask();
+  editTask();
 });
 
 // Creates an HTML task element
@@ -55,32 +56,9 @@ const createTaskElement = (taskObj) => {
 			});
 		})
     // On click on edit, prevent default and run function edit task
-		.on('click', '.edit-task', (event) => {
-        $(document).on('submit', '#edit-task-form', () => {
-          event.preventDefault();
+		// .on('click', '.edit-task', (event) => {
 
-          const taskID = event.currentTarget.id;
-          const textObj = $('#edit-task-description');
-          const serializeValue = $('#edit-task-form').serialize();
-          console.log(serializeValue);
-          console.log(taskID);
-
-          // Ajax post to task db
-          $.ajax({
-            type: 'POST',
-            url: `/task/${taskID}`,
-            data: serializeValue
-          })
-            .then(() => {
-              $('#edit-task-popup').fadeOut(500);
-              setTimeout(() => {
-                $('#edit-task-popup').toggleClass('show');
-              }, 500);
-              textObj.val("");
-              renderTasks();
-            });
-        });
-    });
+    // });
 	return $task;
 };
 
@@ -151,10 +129,36 @@ const submitTask = () => {
 			// Posting new task and rendering
 			$.post('/task', serializedText).then(() => {
 				$('#new-task-popup').fadeOut(500);
-				modal.toggleClass('show');
+				(modal.toggleClass('show'));
 				textObj.val('');
 				renderTasks();
 			});
 		}
 	});
+};
+
+const editTask = () => {
+  let clickDisabled = false;
+
+  $(document).on('submit', '#edit-task-form', (event) => {
+    event.preventDefault();
+    if (clickDisabled) {
+			return;
+		}
+
+    const modal = $('#edit-task-popup');
+    const taskID = $('body').data().taskID;
+    const textObj = $('#edit-task-description');
+    const serializeValue = $('#edit-task-form').serialize();
+    console.log(serializeValue);
+    console.log(taskID);
+
+    // Ajax post to task db
+    $.post(`/task/${taskID}`, serializeValue).then(() => {
+        $('#edit-task-popup').fadeOut(500);
+        (modal.toggleClass('show'));
+        textObj.val("");
+        renderTasks();
+      });
+  });
 };
