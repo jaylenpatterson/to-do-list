@@ -8,7 +8,7 @@
 const express = require('express');
 const router = express.Router();
 const searcher = require('../helpers/categorize.js');
-const { getUsersTasks, addNewTask, deleteTask  } = require('./helperFunctions');
+const { getUsersTasks, addNewTask, deleteTask, editTask  } = require('./helperFunctions');
 
 module.exports = (db) => {
   // Getting user ID
@@ -38,6 +38,7 @@ module.exports = (db) => {
      })
     })
 
+  // Deleting tasks
 	router.post('/delete', (req, res) => {
 		const id = req.body.id
 		deleteTask(id, db)
@@ -46,6 +47,22 @@ module.exports = (db) => {
         res.send(err);
       });
 	})
+
+  // Edit Tasks
+  router.post('/:taskID', (req, res) => {
+  const userID = '1'
+  const category = req.body.category;
+  const description = req.body.text_description;
+  const taskID = req.params.taskID;
+
+  editTask(userID, category, description, taskID, db)
+  .then(task => {
+    res.send(task);
+  })
+  .catch(err => {
+    console.log('Error:', err);
+  });
+});
 
 	return router;
 
