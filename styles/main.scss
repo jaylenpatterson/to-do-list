@@ -1,5 +1,7 @@
 // Constant Colors
 $primary-color: #FFFFFF;
+$font-family: 'Exo 2', sans-serif;
+$task-font: 'Montserrat Alternates', sans-serf;
 
 
 body {
@@ -51,6 +53,7 @@ article.inner-content {
 }
 
 article.listed-tasks {
+  font-family: $task-font;
   margin-top: 25px;
   border-radius: 25px;
   background: #9392C3;
