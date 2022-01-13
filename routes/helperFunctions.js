@@ -42,7 +42,7 @@ const addNewTask = function(userid, db) {
 };
 
 const deleteTask = function(id, db) {
-	const text = `DELETE FROM tasks 
+	const text = `DELETE FROM tasks
     WHERE id = ${'$1'}
     RETURNING *;
   `;
@@ -53,9 +53,38 @@ const deleteTask = function(id, db) {
 	});
 };
 
+const editTask = function(userid, category, description, taskID, db) {
+  let queryString = `UPDATE tasks SET`;
+
+  const queryParams = [];
+
+  if (category) {
+    queryParams.push(category);
+    queryString += ` category = $${queryParams.length}`;
+  }
+  if (description) {
+    queryParams.push(description);
+    queryString += `, description = $${queryParams.length}`;
+  }
+
+  queryParams.push(userid);
+  queryString += ` WHERE user_id = $${queryParams.length}`;
+  queryParams.push(taskID);
+  queryString += ` AND id = $${queryParams.length}
+  RETURNING *;
+  `;
+
+  return db.query(queryString, queryParams)
+  .then(res => res.rows)
+  .catch(err => {
+    console.log('Query Error:', err);
+  });
+};
+
 module.exports = {
 	addUser,
 	addNewTask,
 	getUsersTasks,
-	deleteTask
+	deleteTask,
+  editTask
 };
