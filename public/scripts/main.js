@@ -23,20 +23,21 @@ const appendMain = function(user) {
 // HTML content to be dynamically added
 const $taskContainer = `
 <section id="task-container">
+<h2 class='h2 allTasks'>All//Tasks</h2>
 <div class="category-watch">
 <h2 class='h2 toWatch'>To//Watch</h2>
 <div class='toWatch taskContainer'></div>
 </div>
 <div class="category-eat">
-<h2 class='h2 toEat'>To Eat:</h2>
+<h2 class='h2 toEat'>To//Eat</h2>
 <div class='toEat taskContainer'></div>
 </div>
 <div class="category-read">
-<h2 class='h2 toRead'>To Read:</h2>
+<h2 class='h2 toRead'>To//Read</h2>
 <div class='toRead taskContainer'></div>
 </div>
 <div class="category-buy">
-<h2 class='h2 toBuy'>To Buy:</h2>
+<h2 class='h2 toBuy'>To//Buy</h2>
 <div class='toBuy taskContainer'></div>
 </div>
 <div class="category-null">
