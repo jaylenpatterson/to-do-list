@@ -30,6 +30,13 @@ $(function() {
   editTask();
 });
 
+  // Escape function to prevent scripts being passed in as a tweet
+  const escapeMe = function(str) {
+    let div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  };
+
 // Creates an HTML task element
 const createTaskElement = (taskObj) => {
 	let $newTask = null;
@@ -37,7 +44,7 @@ const createTaskElement = (taskObj) => {
 
 	$newTask = `
     <header>
-      <h4>${taskObj.description}</h4>
+      <h4>${escapeMe(taskObj.description)}</h4>
       <span class="icons">
         <button class= "edit-task" type="button" id="${taskObj.id}"><i class="fa-solid fa-pen-to-square fa-fw"></i></button>
         <button class= "delete-btn" type = "button" name = "delete" id="${taskObj.id}"><i class="fa-solid fa-trash-can fa-fw"></i></button>
@@ -114,7 +121,7 @@ const submitTask = () => {
 		clickDisabled = true;
 		setTimeout(function() {
 			clickDisabled = false;
-		}, 2000);
+		}, 1000);
 
 		const input = $('#new-task-form');
 		const textObj = input.find('#task-description');

@@ -35,8 +35,8 @@ module.exports = (db) => {
      .then(task => res.send(task))
      .catch(err => {
        res.send(err);
-     })
-    })
+     });
+    });
 
   // Deleting tasks
 	router.post('/delete', (req, res) => {

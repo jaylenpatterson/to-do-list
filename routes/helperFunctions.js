@@ -29,13 +29,15 @@ const getUsersTasks = function(userid, db, filter) {
 	});
 };
 
-const addNewTask = function(userid, db) {
-	const text = `INSERT INTO tasks (user_id, title, start_date, urgency, category)
-  VALUES ($1, $2, $3, $4, $5)
+const addNewTask = function(userid, description, category, db) {
+  const date = new Date();
+	const text = `INSERT INTO tasks (user_id, description, start_date, category)
+  VALUES ($1, $2, $3, $4)
   RETURNING *;
   `;
 
-	const value = [ userid, title, start_date, category, urgency ];
+	const value = [ userid, description, date, category ];
+
 	return db.query(text, value).then((res) => res.rows).catch((err) => {
 		console.log(err.message);
 	});
