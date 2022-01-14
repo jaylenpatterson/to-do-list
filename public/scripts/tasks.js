@@ -1,33 +1,33 @@
 $(function() {
-  let clickDisabled = false;
+	let clickDisabled = false;
 
 	$('body').on('click', '.all-category-btn', () => {
 		renderTasks();
-    $('.h2.allTasks').show();
+		$('.h2.allTasks').show();
 	});
 	$('body').on('click', '.read-category-btn', () => {
 		renderTasks('read');
-    $('.h2.allTasks').hide();
-    $('.h2.toRead').show();
+		$('.h2.allTasks').hide();
+		$('.h2.toRead').show();
 	});
 	$('body').on('click', '.watch-category-btn', () => {
 		renderTasks('watch');
-    $('.h2.allTasks').hide();
-    $('.h2.toWatch').show();
+		$('.h2.allTasks').hide();
+		$('.h2.toWatch').show();
 	});
 	$('body').on('click', '.eat-category-btn', () => {
 		renderTasks('eat');
-    $('.h2.allTasks').hide();
-    $('.h2.toEat').show();
+		$('.h2.allTasks').hide();
+		$('.h2.toEat').show();
 	});
 	$('body').on('click', '.buy-category-btn', () => {
 		renderTasks('buy');
-    $('.h2.allTasks').hide();
-    $('.h2.toBuy').show();
+		$('.h2.allTasks').hide();
+		$('.h2.toBuy').show();
 	});
 
 	submitTask();
-  editTask();
+	editTask();
 });
 
   // Escape function to prevent scripts being passed in as a tweet
@@ -57,23 +57,21 @@ const createTaskElement = (taskObj) => {
     </article>
     `;
 
-	$task
-		.append($newTask)
-		.on('click', '.delete-btn', (event) => {
-			$.ajax({
-				method: 'POST',
-				url: '/task/delete',
-				data: {
-        id: event.currentTarget.id
-        }
-			}).then(() => {
-				renderTasks();
-			});
-		})
-    // On click on edit, prevent default and run function edit task
-		// .on('click', '.edit-task', (event) => {
+	$task.append($newTask).on('click', '.delete-btn', (event) => {
+		$.ajax({
+			method: 'POST',
+			url: '/task/delete',
+			data: {
+				id: event.currentTarget.id
+			}
+		}).then(() => {
+			renderTasks();
+		});
+	});
+	// On click on edit, prevent default and run function edit task
+	// .on('click', '.edit-task', (event) => {
 
-    // });
+	// });
 	return $task;
 };
 
@@ -142,7 +140,7 @@ const submitTask = () => {
 			// Posting new task and rendering
 			$.post('/task', serializedText).then(() => {
 				$('#new-task-popup').fadeOut(500);
-				(modal.toggleClass('show'));
+				modal.toggleClass('show');
 				textObj.val('');
 				renderTasks();
 			});
@@ -151,27 +149,27 @@ const submitTask = () => {
 };
 
 const editTask = () => {
-  let clickDisabled = false;
+	let clickDisabled = false;
 
-  $(document).on('submit', '#edit-task-form', (event) => {
-    event.preventDefault();
-    if (clickDisabled) {
+	$(document).on('submit', '#edit-task-form', (event) => {
+		event.preventDefault();
+		if (clickDisabled) {
 			return;
 		}
 
-    const modal = $('#edit-task-popup');
-    const taskID = $('body').data().taskID;
-    const textObj = $('#edit-task-description');
-    const serializeValue = $('#edit-task-form').serialize();
-    console.log(serializeValue);
-    console.log(taskID);
+		const modal = $('#edit-task-popup');
+		const taskID = $('body').data().taskID;
+		const textObj = $('#edit-task-description');
+		const serializeValue = $('#edit-task-form').serialize();
+		console.log(serializeValue);
+		console.log(taskID);
 
-    // Ajax post to task db
-    $.post(`/task/${taskID}`, serializeValue).then(() => {
-        $('#edit-task-popup').fadeOut(500);
-        (modal.toggleClass('show'));
-        textObj.val("");
-        renderTasks();
-      });
-  });
+		// Ajax post to task db
+		$.post(`/task/${taskID}`, serializeValue).then(() => {
+			$('#edit-task-popup').fadeOut(500);
+			modal.toggleClass('show');
+			textObj.val('');
+			renderTasks();
+		});
+	});
 };

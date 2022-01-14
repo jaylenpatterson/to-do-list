@@ -1,23 +1,22 @@
 $(function() {
-  $main = $("main");
-  getTheUser()
-    .then(userData => {
-      appendMain(userData);
-    });
+	$main = $('main');
+	getTheUser().then((userData) => {
+		appendMain(userData);
+	});
 });
 
 // Shows main page depending on if user is logged in or not
 const appendMain = function(user) {
-  $main = $("main");
-  $main.empty();
-  if (Object.keys(user).length > 0) {
-    $('main').prepend($newTaskModal);
-    $('main').append($editTaskModal);
-    $('main').append($buttonGroup);
-    // $('main').append($newTask);
-    $('main').append($taskContainer);
-    renderTasks();
-  }
+	$main = $('main');
+	$main.empty();
+	if (Object.keys(user).length > 0) {
+		$('main').prepend($newTaskModal);
+		$('main').append($editTaskModal);
+		$('main').append($buttonGroup);
+		// $('main').append($newTask);
+		$('main').append($taskContainer);
+		renderTasks();
+	}
 };
 
 // HTML content to be dynamically added

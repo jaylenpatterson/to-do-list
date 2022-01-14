@@ -42,7 +42,7 @@ const addNewTask = function(userid, description, category, db) {
 		console.log(err.message);
 	});
 };
-
+// Deletes a task from the database
 const deleteTask = function(id, db) {
 	const text = `DELETE FROM tasks
     WHERE id = ${'$1'}
@@ -54,7 +54,7 @@ const deleteTask = function(id, db) {
 		console.log(err.message);
 	});
 };
-
+// Edits an existing task
 const editTask = function(userid, category, description, taskID, db) {
   let queryString = `UPDATE tasks SET`;
 
