@@ -37,8 +37,7 @@
 	background: none;
 	outline: none;
   cursor: pointer;
-}
-
-.icons > button:hover {
-  color: main.$buttonHoverColor;
+  &:hover {
+    color: main.$buttonHoverColor;
+  }
 }

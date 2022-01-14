@@ -82,7 +82,6 @@ const $editTaskModal = `
       <div>
         <label id="category-modal" for="category">Category:</label>
         <select class="category-select" name="category">
-          <option value="null">Uncategorized</option>
           <option value="watch">To Watch</option>
           <option value="eat">To Eat</option>
           <option value="read">To Read</option>
