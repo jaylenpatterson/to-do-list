@@ -1,7 +1,6 @@
 $(function() {
   // Get the user data and create a header
   getTheUser().then((userObj) => {
-    console.log(userObj);
     createNewNavDiv(userObj);
   });
 });
