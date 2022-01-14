@@ -10,11 +10,11 @@ Become the master of your productivity with Task Master today!
 
 !["Adding a new task to my tasks in Task Master!"](https://user-images.githubusercontent.com/78564008/149436210-8856f6cf-73db-4d0c-a8c9-d79639577b2b.png)
 
-!["Using Task Masters categories to find all my tasks listed under "to eat"."](https://github.com/jaylenpatterson/to-do-list/issues/2)
+!["Using Task Master's categories to find all tasks listed under "to eat"."](https://github.com/jaylenpatterson/to-do-list/issues/2)
 
-!["Using Task Masters categories tof ind all my tasks listed under "to read"."](https://github.com/jaylenpatterson/to-do-list/issues/3)
+!["Using Task Master's categories to find all tasks listed under "to read"."](https://github.com/jaylenpatterson/to-do-list/issues/3)
 
-!["Editing the details of a task that was created"](https://github.com/jaylenpatterson/to-do-list/issues/5)
+!["Editing the details of a task that was created."](https://github.com/jaylenpatterson/to-do-list/issues/5)
 
 ## Dependencies
 
