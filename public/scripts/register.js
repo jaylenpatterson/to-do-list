@@ -13,8 +13,8 @@ const register = function(data) {
     url: '/users/',
     data: data
   })
-  .then(data => {
-    createNewHeaderDiv(data);
-    appendMain(data);
-  });
+    .then(data => {
+      createNewHeaderDiv(data);
+      appendMain(data);
+    });
 };

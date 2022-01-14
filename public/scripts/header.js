@@ -1,41 +1,41 @@
 $(function() {
-	// Get the user data and create a header
-	getTheUser().then((userObj) => {
-		console.log(userObj);
-		createNewNavDiv(userObj);
-	});
+  // Get the user data and create a header
+  getTheUser().then((userObj) => {
+    console.log(userObj);
+    createNewNavDiv(userObj);
+  });
 });
 
 // Create nav based on user
 const createNewNavDiv = (user) => {
-	const $nav = $('#nav');
+  const $nav = $('#nav');
 
-	$nav.empty();
-	if (Object.keys(user).length > 0) {
-		const $navBar = $(`
+  $nav.empty();
+  if (Object.keys(user).length > 0) {
+    const $navBar = $(`
       <h1>Welcome back, ${user.name}</h1>
       <h1>Task Master!</h1>
       `);
-		$('nav').append($navBar);
-	}
+    $('nav').append($navBar);
+  }
 };
 
 // Animation
 const animateHeaderButtons = function(form) {
-	$main.empty();
-	$main.fadeIn(2000);
-	$main.children().promise().then(function() {
-		$main.append(form);
-	});
+  $main.empty();
+  $main.fadeIn(2000);
+  $main.children().promise().then(function() {
+    $main.append(form);
+  });
 };
 
 // Get user data
 const getTheUser = function() {
-	return $.ajax({
-		url: '/users/'
-	}).then((userObj) => {
-		return userObj;
-	});
+  return $.ajax({
+    url: '/users/'
+  }).then((userObj) => {
+    return userObj;
+  });
 };
 
 // HTML for form variables
