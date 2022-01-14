@@ -33,3 +33,5 @@ Become the master of your productivity with Task Master today!
 
 ## Getting Started
  
+- Install all dependencies using the `npm install` command.
+- Run the development web server using the `npm start` command.
