@@ -115,13 +115,13 @@ const searcher = function(query) {
 			findWatchKeyWords(response.data.results[0].description) ||
 			findWatchKeyWords(response.data.results[0].title)
 		) {
-		return	new Promise((resolve) => resolve('watch'));
+			return new Promise((resolve) => resolve('watch'));
 		}
 
 		if (findEatKeyWords(response.data.results[0].description) || findEatKeyWords(response.data.results[0].title)) {
-		return	new Promise((resolve) => resolve('eat'));
+			return new Promise((resolve) => resolve('eat'));
 		} else {
-		return	new Promise((resolve) => resolve('buy'));
+			return new Promise((resolve) => resolve('buy'));
 		}
 	});
 };

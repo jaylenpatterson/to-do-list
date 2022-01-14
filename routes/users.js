@@ -16,15 +16,15 @@ module.exports = (db) => {
     const userID = '1';
     if (userID) {
       db.query(`SELECT * FROM users WHERE id = $1;`, [userID])
-      .then(data => {
-        const users = data.rows[0];
-        res.send({id: users.id, name: users.name, email: users.email});
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+        .then(data => {
+          const users = data.rows[0];
+          res.send({id: users.id, name: users.name, email: users.email});
+        })
+        .catch(err => {
+          res
+            .status(500)
+            .json({ error: err.message });
+        });
     }
   });
 
@@ -33,15 +33,15 @@ module.exports = (db) => {
     const user = req.body;
     user.password = bcrypt.hashSync(user.password, 12);
     addUser(user, db)
-    .then(user => {
-      if(!user) {
-        res.send({error: 'Error'});
-        return;
-      }
-      req.session.userId = user.id;
-      res.send('Logged in');
-    })
-    .catch(err => res.send(err));
+      .then(user => {
+        if (!user) {
+          res.send({error: 'Error'});
+          return;
+        }
+        req.session.userId = user.id;
+        res.send('Logged in');
+      })
+      .catch(err => res.send(err));
   });
 
   return router;

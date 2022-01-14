@@ -23,12 +23,12 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 
 app.use(
-	'/styles',
-	sassMiddleware({
-		source: __dirname + '/styles',
-		destination: __dirname + '/public/styles',
-		isSass: false // false => scss, true => sass
-	})
+  '/styles',
+  sassMiddleware({
+    source: __dirname + '/styles',
+    destination: __dirname + '/public/styles',
+    isSass: false // false => scss, true => sass
+  })
 );
 
 app.use(express.static('public'));
@@ -49,9 +49,9 @@ app.use('/task', taskRoutes(db));
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-	res.render('index');
+  res.render('index');
 });
 
 app.listen(PORT, () => {
-	console.log(`Example app listening on port ${PORT}`);
+  console.log(`Example app listening on port ${PORT}`);
 });

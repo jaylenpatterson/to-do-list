@@ -3,37 +3,37 @@
 
 // Main Modal
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.4);
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
 }
 
 #category-modal {
-  margin: 1em 0em 0.5em 0em;
-  font-family: main.$font-family;
-  font-size: 2em;
+	margin: 1em 0em 0.5em 0em;
+	font-family: main.$font-family;
+	font-size: 2em;
 }
 
 .category-select {
-  border-radius: 10px;
-  font-family: main.$font-family;
-  font-size: 1em;
-  padding: 5px 0 5px 0;
+	border-radius: 10px;
+	font-family: main.$font-family;
+	font-size: 1em;
+	padding: 5px 0 5px 0;
 }
 
 /* Modal Content */
 .modal-content {
-  background-color: #9392C3;
-  border-radius: 25px;
-  margin: 250px auto;
-  padding: 0em 1em 0.5em 1em;
-  width: 70%;
+	background-color: #9392c3;
+	border-radius: 25px;
+	margin: 250px auto;
+	padding: 0em 1em 0.5em 1em;
+	width: 70%;
 }
 
 .modal-content form div {
@@ -44,38 +44,36 @@
 
 // Submit button
 .modal-content form button {
-  cursor: pointer;
-  display: flex;
+	cursor: pointer;
+	display: flex;
 	box-shadow: none;
-  margin-top: 5px;
-  border: none;
-  background: none;
-  font-size: 2em;
-  outline: none;
-  align-self: center;
-  margin-top: 10px;
-  &:hover {
-    color: #355C7D;
-  }
+	margin-top: 5px;
+	border: none;
+	background: none;
+	font-size: 2em;
+	outline: none;
+	align-self: center;
+	margin-top: 10px;
+	&:hover {
+		color: #355c7d;
+	}
 }
 
 .modal-content form textarea {
-  margin-top: 20px;
-  border-radius: 10px;
-  padding: 10px 10px 0 10px;
-  resize: none;
+	margin-top: 20px;
+	border-radius: 10px;
+	padding: 10px 10px 0 10px;
+	resize: none;
 }
-
 
 // Close button
 .close {
-  color: #000;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-  &:hover {
-    color: main.$buttonHoverColor
-  }
+	color: #000;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	cursor: pointer;
+	&:hover {
+		color: main.$buttonHoverColor;
+	}
 }
-

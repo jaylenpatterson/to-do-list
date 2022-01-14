@@ -40,8 +40,8 @@
 	border: none;
 	background: none;
 	outline: none;
-  cursor: pointer;
-  &:hover {
-    color: main.$buttonHoverColor;
-  }
+	cursor: pointer;
+	&:hover {
+		color: main.$buttonHoverColor;
+	}
 }

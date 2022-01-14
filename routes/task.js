@@ -13,7 +13,7 @@ const { getUsersTasks, addNewTask, deleteTask, editTask  } = require('./helperFu
 module.exports = (db) => {
   // Getting user ID
   router.get('/', (req, res) => {
-		const filter = req.query.filter
+    const filter = req.query.filter;
     const userID = '1';
     if (!userID) {
       res.status(401).send('Not Logged in');
@@ -28,42 +28,42 @@ module.exports = (db) => {
 
   // Adding new task
   router.post('/', (req, res) => {
-     const userID = '1';
-     const description = req.body.text_description;
-     searcher(req.body.text_description)
-     .then(res => addNewTask(userID, description, res, db))
-     .then(task => res.send(task))
-     .catch(err => {
-       res.send(err);
-     });
-    });
+    const userID = '1';
+    const description = req.body.text_description;
+    searcher(req.body.text_description)
+      .then(res => addNewTask(userID, description, res, db))
+      .then(task => res.send(task))
+      .catch(err => {
+        res.send(err);
+      });
+  });
 
   // Deleting tasks
-	router.post('/delete', (req, res) => {
-		const id = req.body.id
-		deleteTask(id, db)
+  router.post('/delete', (req, res) => {
+    const id = req.body.id;
+    deleteTask(id, db)
 		 .then(tasks => res.send(tasks))
       .catch(err => {
         res.send(err);
       });
-	})
+  });
 
   // Edit Tasks
   router.post('/:taskID', (req, res) => {
-  const userID = '1'
-  const category = req.body.category;
-  const description = req.body.text_description;
-  const taskID = req.params.taskID;
+    const userID = '1';
+    const category = req.body.category;
+    const description = req.body.text_description;
+    const taskID = req.params.taskID;
 
-  editTask(userID, category, description, taskID, db)
-  .then(task => {
-    res.send(task);
-  })
-  .catch(err => {
-    console.log('Error:', err);
+    editTask(userID, category, description, taskID, db)
+      .then(task => {
+        res.send(task);
+      })
+      .catch(err => {
+        console.log('Error:', err);
+      });
   });
-});
 
-	return router;
+  return router;
 
 };
