@@ -28,7 +28,7 @@ const getUsersTasks = function(userid, db, filter) {
 		console.error('query error', err.stack);
 	});
 };
-
+// Adds a new task to the database
 const addNewTask = function(userid, description, category, db) {
   const date = new Date();
 	const text = `INSERT INTO tasks (user_id, description, start_date, category)

@@ -42,8 +42,8 @@ const $taskContainer = `
 </section>
 `;
 
-// const $newTask = `<button id="new-task"></button>`;
 
+// to be appended to main
 const $buttonGroup = `
 <div class="button-group">
   <button id="new-task"><i class="fas fa-plus-square fa-3x"></i></button>
@@ -54,7 +54,7 @@ const $buttonGroup = `
   <button class='buy-category-btn'><i class="fas fa-shopping-cart fa-3x"></i></button>
 </div>
 `;
-
+// pop up box that allows the user to create a new task
 const $newTaskModal = `
 <!-- The Modal -->
 <div id="new-task-popup" class="modal">
@@ -71,7 +71,7 @@ const $newTaskModal = `
   </div>
 </div>
 `;
-
+// pop up box that allows the user to edit a task
 const $editTaskModal = `
 <div id="edit-task-popup" class="modal">
   <!-- Modal content -->

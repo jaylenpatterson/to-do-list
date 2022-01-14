@@ -2,7 +2,7 @@ $(document).ready(() => {
 	submitModal();
 	editModal();
 });
-
+// pop up box for creatin a new task
 const submitModal = function() {
 	$(document).on('click', '#new-task', () => {
 		$('#new-task-popup').fadeIn(500);
@@ -12,7 +12,7 @@ const submitModal = function() {
 		$('#new-task-popup').fadeOut(500);
 	});
 };
-
+// pop up box for editing a task
 const editModal = function() {
 	// Opens the modal window for editing the task
 	$(document).on('click', '.edit-task', function() {

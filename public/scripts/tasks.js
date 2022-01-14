@@ -150,7 +150,6 @@ const submitTask = () => {
 
 const editTask = () => {
 	let clickDisabled = false;
-
 	$(document).on('submit', '#edit-task-form', (event) => {
 		event.preventDefault();
 		if (clickDisabled) {
@@ -161,8 +160,6 @@ const editTask = () => {
 		const taskID = $('body').data().taskID;
 		const textObj = $('#edit-task-description');
 		const serializeValue = $('#edit-task-form').serialize();
-		console.log(serializeValue);
-		console.log(taskID);
 
 		// Ajax post to task db
 		$.post(`/task/${taskID}`, serializeValue).then(() => {
